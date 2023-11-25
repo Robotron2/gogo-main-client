@@ -1,0 +1,117 @@
+@import url("https://fonts.googleapis.com/css2?family=Dosis&family=Red+Hat+Display&family=Rubik+Vinyl&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Open+Sans:wght@600&family=Roboto&display=swap");
+
+:root {
+	--white: #fff;
+	--black: #000;
+	--light-body: #faffff;
+	--light: #bcecee63;
+	--light-green: #a4f298;
+	--green: #063a27;
+	--light-green-2: #16ac64;
+	--light-bg-green: #0a4f51;
+	--dark-green: #305c45;
+	--cyan: #52e5e9;
+	--teal-dark-1: #1d484a;
+	--teal-dark-2: #0d2619;
+	--teal-light-1: #0e4749;
+	--teal-light-2: #0a4f51;
+	--teal-light-3: #007c80;
+	--teal-light-4: #3fafb2;
+	--grey: #8d9ea1;
+	--grey-1: #686f70;
+	--teal-text: #009599;
+}
+
+:root {
+	--headings: "Montserrat", sans-serif;
+	--body: "Open Sans", sans-serif;
+	--number: "Rubik Vinyl", cursive;
+}
+
+html {
+	scroll-behavior: smooth;
+}
+
+::selection {
+	color: var(--light-body);
+	background: var(--teal-light-4);
+}
+
+.title-wrap {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	grid-auto-rows: minmax(50px, auto);
+	gap: 0;
+}
+.title-wrap p {
+	grid-column: 1/3;
+	margin-bottom: 0;
+}
+.title-wrap h3 {
+	grid-column: 1/3;
+	margin-top: 0;
+	font-size: 35px;
+}
+
+.cyan-text {
+	color: var(--cyan);
+}
+
+.teal-text {
+	color: var(--teal-text);
+}
+
+.light-text {
+	color: var(--light);
+	font-weight: 500;
+	font-size: 12px;
+}
+
+.grey-text {
+	color: var(--grey-1);
+	font-size: 20px;
+}
+.text-grey {
+	color: var(--grey-1);
+	font-size: 12px;
+}
+
+.text-sm {
+	font-size: 12px;
+}
+.text-m {
+	font-size: 14px;
+}
+
+.bg-grey {
+	background: var(--grey);
+	color: var(--light-body);
+}
+
+.bg-teal-dark {
+	background: var(--light-bg-green);
+}
+.btn-teal-dark {
+	padding: 0.5em;
+	background: var(--light-bg-green);
+	color: var(--white);
+	outline: none;
+	border: none;
+}
+.btn-teal-dark:hover {
+	outline: none;
+	border: none;
+	transition: 0.1s ease-in-out;
+}
+
+.size-1 {
+	font-size: 1rem;
+}
+.size-2 {
+	font-size: 3rem;
+}
+
+.neu-input {
+	box-shadow: inset 2px 2px 2px #d5d7da, inset -2px -2px 2px white;
+}

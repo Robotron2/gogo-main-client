@@ -1,0 +1,50 @@
+.booking-container {
+	margin-top: 10px;
+}
+.booking-card {
+	width: 50%;
+	border: 1px solid black;
+	border-radius: 30px;
+}
+.card-hd {
+	background-color: var(--light-bg-green);
+	border-top-right-radius: 28px;
+	border-top-left-radius: 28px;
+	padding: 35px;
+	color: var(--white);
+}
+.card-bt {
+	background-color: var(--light-bg-green);
+	border-bottom-right-radius: 28px;
+	border-bottom-left-radius: 28px;
+	padding: 35px;
+	color: var(--white);
+}
+.card-bd-1 {
+	margin: 20px;
+	border-bottom: 1px solid gray;
+}
+.card-detail {
+	font-size: 0.6rem;
+	margin-top: 23px;
+	font-weight: 300;
+}
+.card-info {
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
+.card-bd-2 {
+	margin: 20px;
+}
+
+/*************************************************MEDIA QUERIES****************************************************************/
+/* TABLET */
+@media (max-width: 834px) {
+	.booking-container {
+		margin-top: 20px;
+	}
+	.booking-card {
+		width: 80%;
+	}
+}

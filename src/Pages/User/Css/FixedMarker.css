@@ -1,0 +1,15 @@
+/* FixedMarker.css */
+.fixed-marker {
+	width: 40px;
+	height: 40px;
+	background-color: red;
+	border-radius: 50%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+	position: absolute; /* Position the marker absolutely on the map */
+	/* Adjust the marker's top and left properties to position it on the map */
+	top: 50px;
+	left: 50px;
+}

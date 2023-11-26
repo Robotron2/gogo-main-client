@@ -1578,8 +1578,8 @@ section.footer {
 
 @media (max-device-width: 767px) {
 	section.footer {
-		background: green;
-		/* background-image: url("../../../assets/sienna.jpg"); */
+		/* background: green; */
+		background-image: url("../../../assets/sienna.jpg");
 		background-position: center;
 		background-size: cover;
 		background-repeat: no-repeat;

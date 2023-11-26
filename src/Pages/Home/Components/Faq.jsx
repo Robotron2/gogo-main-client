@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 const Faq = () => {
 	return (
 		<>
@@ -31,7 +32,12 @@ const Faq = () => {
 														href="#collapseOne"
 														aria-expanded="false"
 														aria-controls="collapseOne"
-													></a>
+													>
+														<i
+															className="fa fa-question-circle-o"
+															aria-hidden="true"
+														/>
+													</a>
 												</h4>
 											</div>
 										</div>
@@ -41,13 +47,30 @@ const Faq = () => {
 											role="tabpanel"
 											aria-labelledby="headingOne"
 										>
+											<hr />
 											<div className="container">
 												<div className="panel-body">
-													Lorem ipsum dolor sit amet consectetur adipisicing
-													elit. Sunt debitis omnis fugit sequi autem veniam quis
-													natus, necessitatibus nesciunt consectetur maxime eum
-													provident iure consequuntur quae facilis. Dolorum,
-													accusamus culpa.
+													<p>
+														In the dynamic landscape of transportation and
+														logistics, GoGo Rides emerges as a pioneering force,
+														dedicated to transforming the way communities in
+														Ekiti State and the wider Southwestern region of
+														Nigeria connect.
+													</p>
+													<p>
+														Our innovative transport company bridges the gap
+														between convenience and reliability, offering a
+														comprehensive suite of services that redefine
+														intra-community rides and inter-state logistics.
+													</p>
+													<p>
+														At GoGo Rides, we're more than just a transportation
+														provider – we're enablers of progress. With a fleet
+														of modern vehicles and a robust technology platform,
+														we empower individuals, families, and businesses to
+														access safe, efficient, and affordable
+														transportation solutions.
+													</p>
 												</div>
 											</div>
 										</div>
@@ -63,16 +86,23 @@ const Faq = () => {
 														href="#collapseTwo"
 														aria-expanded="false"
 														aria-controls="collapseTwo"
-													></a>
+													>
+														<i
+															className="fa fa-question-circle-o"
+															aria-hidden="true"
+														/>
+													</a>
 												</h4>
 											</div>
 										</div>
+
 										<div
 											id="collapseTwo"
 											className="panel-collapse collapse container"
 											role="tabpanel"
 											aria-labelledby="headingTwo"
 										>
+											<hr />
 											<div className="container">
 												<div className="panel-body">
 													Lorem ipsum dolor sit amet, consectetur adipisicing
@@ -90,13 +120,17 @@ const Faq = () => {
 												3. GoGo routes
 												<h4 className="panel-title">
 													<a
-														className="collapsed"
 														data-toggle="collapse"
 														data-parent="#accordion"
 														href="#collapseThree"
 														aria-expanded="false"
 														aria-controls="collapseThree"
-													></a>
+													>
+														<i
+															className="fa fa-question-circle-o"
+															aria-hidden="true"
+														/>
+													</a>
 												</h4>
 											</div>
 										</div>
@@ -106,13 +140,14 @@ const Faq = () => {
 											role="tabpanel"
 											aria-labelledby="headingThree"
 										>
+											<hr />
 											<div className="container">
 												<div className="panel-body">
 													Lorem ipsum dolor sit amet consectetur adipisicing
 													elit. Excepturi numquam perferendis distinctio quod ut
 													voluptas quas accusantium dignissimos dolorum nulla.
 													Magni eos minima dignissimos, corrupti modi nulla
-													autem doloribus impedit.{" "}
+													autem doloribus impedit.
 												</div>
 											</div>
 										</div>

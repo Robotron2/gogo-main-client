@@ -5,7 +5,7 @@ import toast from "react-hot-toast"
 
 const Header = () => {
 	const toastUser = () => {
-		toast.error("User registrations will be online ones we launch fully!")
+		toast.error("User registrations will be online once we launch fully!")
 	}
 	return (
 		<>

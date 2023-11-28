@@ -13,22 +13,12 @@ body {
 .mapboxgl-control-container {
 	display: none;
 }
-/* .banner {
-	background: linear-gradient(#0a4f51, #fafafa);
-	position: absolute;
-	height: 350px;
-	width: 100%;
-	z-index: -1;
-} */
+
+.custom-nav-mobile-wrapper {
+	display: none;
+}
+
 .dash-hero-wrapper {
-	/* background: linear-gradient(#0a4f51, #fafafa23); */
-	/* background: linear-gradient(70% #0a4f51, 30% ); */
-	/* background: linear-gradient(to bottom, #0a4f51 40%,  #618281 100%);        */
-
-	/* background: linear-gradient(to bottom, #0a4f51 93%, #808080 5%, #fff 2%);        */
-
-	/* position: absolute; */
-	/* z-index: -1; */
 	height: 230px;
 	flex-shrink: 0;
 	width: 100%;
@@ -134,6 +124,7 @@ body {
 .user-details h6 {
 	font-weight: 900;
 	font-size: 18px;
+	text-transform: capitalize;
 }
 .user-details p {
 	color: grey;
@@ -165,6 +156,10 @@ body {
 	margin-right: 2px;
 	display: inline;
 	font-weight: 900;
+}
+
+.trips {
+	margin-bottom: 100px;
 }
 .trips .div-title {
 	height: 50px;
@@ -249,9 +244,15 @@ body {
 }
 
 .time-location {
-	padding: 20px;
+	padding: 15px;
 	display: flex;
-	justify-content: space-between;
+	/* justify-content: space-between; */
+	justify-content: space-evenly;
+	color: #34394a;
+	font-family: Montserrat;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 40px; /* 138.75% */
 }
 .time-location h6 {
 	color: grey;
@@ -527,7 +528,6 @@ hr {
 		padding: 18px;
 	}
 }
-/* 	MOBILE */
 
 @media (max-width: 450px) {
 	.trip-details > .container {
@@ -558,5 +558,116 @@ hr {
 	}
 	.mb-d-card-1 {
 		display: none;
+	}
+}
+
+@media (max-device-width: 749px) {
+	.dash-nav-wrapper,
+	.dash-hero-wrapper {
+		display: none;
+	}
+
+	/* Custom Nav Mobile */
+	.custom-nav-mobile-wrapper {
+		display: flex;
+		width: 100%;
+	}
+	.custom-nav-wrapper {
+		display: none;
+	}
+	.custom-nav-mobile {
+		/* background-color: #ffff; */
+		display: inline-flex;
+		padding: 5px 10px;
+		justify-content: space-between;
+		align-items: center;
+	}
+
+	.user-profile-wrapper {
+		background: linear-gradient(
+			180deg,
+			#0a4f51 40.1%,
+			rgba(0, 18, 10, 0) 179.95%
+		);
+		border: 1.5px solid #62a4a6;
+		padding: 0;
+		display: flex;
+		align-items: center;
+		position: relative;
+	}
+
+	.wrapper-container {
+		display: inline-flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.profile {
+		background-color: inherit;
+		width: 60%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		gap: 5px;
+		padding: 5px;
+		margin: 0 auto;
+		border-radius: 15px;
+		box-shadow: none;
+		color: #fff;
+	}
+
+	/* .user-avatar {
+		border: none;
+	} */
+
+	.user-details {
+		margin-right: 20px auto;
+		text-align: center;
+		font-size: 12px;
+		width: 100%;
+	}
+	.user-details h6 {
+		font-weight: 900;
+		font-size: 18px;
+	}
+	.user-details p {
+		color: #fff;
+	}
+
+	.book-ride-btn {
+		width: 50%;
+		position: absolute;
+		bottom: 0;
+		z-index: 10;
+		margin-bottom: -25px;
+	}
+	.book-ride-btn button {
+		border-radius: 30px;
+		border: 1px solid #225c5c;
+		background: #d4eaea;
+		color: #0a4f51;
+	}
+
+	.trips {
+		margin-top: 50px;
+		margin-bottom: 200px;
+	}
+
+	.trip-cards {
+		display: grid;
+		grid-template-columns: repeat(1, 1fr);
+		grid-auto-rows: minmax(200px, auto);
+	}
+	.trip-card {
+		background-color: white;
+		border: 1px solid rgba(128, 128, 128, 0.486);
+		border-radius: 20px;
+	}
+
+	.time-location {
+		padding: 20px;
+		display: flex;
 	}
 }

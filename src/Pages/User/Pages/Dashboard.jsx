@@ -3,21 +3,17 @@
 import { useEffect, useState } from "react"
 import "../Css/Dashboard.css"
 import useAuth from "../../../Components/CustomHooks/UseAuth"
-// import RideType from "./../../../Components/Utils/RideType"
-import Layout from "../../../Components/Layouts/Layout"
+
 import Button from "../../../Components/Utils/Button"
-// import { Link } from "react-router-dom"
+
 import { motion } from "framer-motion"
-import LocationsDestinations from "../Components/LocationsDestinations"
-import toast from "react-hot-toast"
-import axios from "axios"
 import UseBooking from "../../../Components/CustomHooks/bookings/UseBookings"
-import { Link, useNavigate } from "react-router-dom"
-import LogoLight from "../../../assets/gogo-light.png"
+import { useNavigate } from "react-router-dom"
 import avatar from "../../../assets/user.png"
 import Footer from "../../../Components/Layouts/Footer"
 import CustomNav from "../../../Components/Utils/CustomNav"
 import UseDashboard from "../../../Components/CustomHooks/dashboard/UseDashboard"
+import CustomNavMobile from "../Components/CustomNavMobile"
 
 const Dashboard = () => {
 	const [auth] = useAuth()
@@ -25,17 +21,9 @@ const Dashboard = () => {
 	const { user } = auth
 	const { email, first_name } = user
 
-	const [location, setLocation] = useState("")
-	const [destination, setDestination] = useState("")
-	const [oneWay, setOneWay] = useState(1)
-	const [twoWay, setTwoWay] = useState(0)
-	const [passengers, setPassengers] = useState("")
-	const [locations, setLocations] = useState([])
-
-	const { booking, setBooking } = UseBooking()
 	const navigate = useNavigate()
 
-	const myArray = [1, 2, 3, 4]
+	const myArray = [1]
 
 	const navBooking = () => {
 		setView("booking")
@@ -60,7 +48,7 @@ const Dashboard = () => {
 								<img src={avatar} alt="avatar" />
 							</div>
 							<div className="user-details">
-								<h6>Opeyemi Oluwaseun</h6>
+								<h6>{first_name}</h6>
 								<p>Welcome back!</p>
 							</div>
 						</div>
@@ -75,10 +63,10 @@ const Dashboard = () => {
 					</div>
 				</div>
 			</div>
-			<div className="trips mt-2 ">
+			<div className="trips ">
 				<div className="container">
 					<div className="div-title">
-						<h6>Ride request</h6>
+						<h6>Upcoming Trip</h6>
 					</div>
 
 					<div className="trip-cards">

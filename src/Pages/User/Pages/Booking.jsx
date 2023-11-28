@@ -5,9 +5,11 @@ import { useNavigate } from "react-router-dom"
 import UseBooking from "../../../Components/CustomHooks/bookings/UseBookings"
 import LocationsDestinations from "../Components/LocationsDestinations"
 import Button from "../../../Components/Utils/Button"
-import Layout from "../../../Components/Layouts/Layout"
+
 import useAuth from "../../../Components/CustomHooks/UseAuth"
 import UseDashboard from "../../../Components/CustomHooks/dashboard/UseDashboard"
+import CustomNav from "../../../Components/Utils/CustomNav"
+import CustomNavMobile from "../Components/CustomNavMobile"
 
 function Booking() {
 	const [auth] = useAuth()
@@ -125,140 +127,140 @@ function Booking() {
 	}, [])
 	return (
 		<>
-			<Layout title={"Booking"}>
-				<div className="banner" />
-				<div className="container-fluid p-3">
-					<div className="trip-details ">
-						<div className="container">
-							<div className="input-group flex-nowrap location rounded-pill">
-								<span
-									className="input-group-text fa fa-map-marker pad"
-									id="addon-wrapping"
-								/>
+			<div className="custom-nav-wrapper">
+				<CustomNav />
+			</div>
+			<>
+				<CustomNavMobile />
+			</>
+			<div className="banner" />
+			<div className="container-fluid p-3">
+				<div className="trip-details ">
+					<div className="container">
+						<div className="input-group flex-nowrap location rounded-pill">
+							<span
+								className="input-group-text fa fa-map-marker pad"
+								id="addon-wrapping"
+							/>
 
-								<LocationsDestinations
-									type={"Select a Location"}
-									selector={handleSelectLocation}
-									locations={locations}
-									where={location}
-								/>
-							</div>
-							<div className="input-group flex-nowrap location rounded-pill">
-								<span
-									className="input-group-text fa fa-map-marker pad"
-									id="addon-wrapping"
-								/>
+							<LocationsDestinations
+								type={"Select a Location"}
+								selector={handleSelectLocation}
+								locations={locations}
+								where={location}
+							/>
+						</div>
+						<div className="input-group flex-nowrap location rounded-pill">
+							<span
+								className="input-group-text fa fa-map-marker pad"
+								id="addon-wrapping"
+							/>
 
-								<LocationsDestinations
-									type={"Select a Location"}
-									selector={handleSelectLocation}
-									locations={locations}
-									where={location}
-								/>
-							</div>
-							<div className="input-group flex-nowrap location rounded-pill">
-								<span
-									className="input-group-text fa fa-map-marker pad"
-									id="addon-wrapping"
-								/>
+							<LocationsDestinations
+								type={"Select a Location"}
+								selector={handleSelectLocation}
+								locations={locations}
+								where={location}
+							/>
+						</div>
+						<div className="input-group flex-nowrap location rounded-pill">
+							<span
+								className="input-group-text fa fa-map-marker pad"
+								id="addon-wrapping"
+							/>
 
-								<LocationsDestinations
-									type={"Select a Location"}
-									selector={handleSelectLocation}
-									locations={locations}
-									where={location}
-								/>
-							</div>
-							<div className="input-group flex-nowrap destination rounded-pill">
-								<span
-									className="input-group-text fa fa-dot-circle-o pad"
-									id="addon-wrapping"
-								/>
+							<LocationsDestinations
+								type={"Select a Location"}
+								selector={handleSelectLocation}
+								locations={locations}
+								where={location}
+							/>
+						</div>
+						<div className="input-group flex-nowrap destination rounded-pill">
+							<span
+								className="input-group-text fa fa-dot-circle-o pad"
+								id="addon-wrapping"
+							/>
 
-								<LocationsDestinations
-									type={"Select a Destination"}
-									selector={handleSelectDestination}
-									locations={locations}
-									where={destination}
-								/>
-							</div>
-							<div className="input-group flex-nowrap departure rounded-pill">
-								<span
-									className="input-group-text fa fa fa-calendar pad"
-									id="addon-wrapping"
-								/>
-								<input
-									type="date"
-									className="form-control pad"
-									placeholder="Departure"
-									aria-label="Username"
-									aria-describedby="addon-wrapping"
-								/>
-							</div>
-							<hr />
-							<div className="trip-route">
-								{/* <input type="number" className="form-control rounded-pill numpas" placeholder="Enter the number of passengers" max={4} min={1} /> */}
+							<LocationsDestinations
+								type={"Select a Destination"}
+								selector={handleSelectDestination}
+								locations={locations}
+								where={destination}
+							/>
+						</div>
+						<div className="input-group flex-nowrap departure rounded-pill">
+							<span
+								className="input-group-text fa fa fa-calendar pad"
+								id="addon-wrapping"
+							/>
+							<input
+								type="date"
+								className="form-control pad"
+								placeholder="Departure"
+								aria-label="Username"
+								aria-describedby="addon-wrapping"
+							/>
+						</div>
+						<hr />
+						<div className="trip-route">
+							{/* <input type="number" className="form-control rounded-pill numpas" placeholder="Enter the number of passengers" max={4} min={1} /> */}
 
-								<select
-									className="form-select form-control rounded-pill"
-									value={passengers}
-									onChange={handleSelectPassenger}
-								>
-									<option disabled={true} value="">
-										Number of Passengers
-									</option>
-									<option value="1">1</option>
-									<option value="2">2</option>
-									<option value="3">3</option>
-									<option value="4">4</option>
-								</select>
+							<select
+								className="form-select form-control rounded-pill"
+								value={passengers}
+								onChange={handleSelectPassenger}
+							>
+								<option disabled={true} value="">
+									Number of Passengers
+								</option>
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+							</select>
 
-								<button
-									className={
-										oneWay ? "btn  btn-light" : "btn  btn-outline-light"
-									}
-									onClick={() => {
-										setOneWay(true)
-										setTwoWay(false)
-									}}
-								>
-									Departure Only
-								</button>
-								<button
-									className={
-										twoWay ? "btn  btn-light" : "btn  btn-outline-light"
-									}
-									onClick={() => {
-										setOneWay(false)
-										setTwoWay(true)
-									}}
-								>
-									To-Fro
-								</button>
-							</div>
+							<button
+								className={oneWay ? "btn  btn-light" : "btn  btn-outline-light"}
+								onClick={() => {
+									setOneWay(true)
+									setTwoWay(false)
+								}}
+							>
+								Departure Only
+							</button>
+							<button
+								className={twoWay ? "btn  btn-light" : "btn  btn-outline-light"}
+								onClick={() => {
+									setOneWay(false)
+									setTwoWay(true)
+								}}
+							>
+								To-Fro
+							</button>
 						</div>
 					</div>
 				</div>
-				{/* <div className="container">
+			</div>
+			{/* <div className="container">
 					<RideType title="Select a RIDE for your DEPARTURE" />
 				</div>
 				<div className="container">
 					<RideType title="Select a RIDE for your REROUTE" />
 				</div> */}
-				<div className="container text-center">
-					<Button
-						name={"continue"}
-						className={" btn-teal-dark rounded-pill w-50"}
-						clickProp={handleBooking}
-					/>
+			<div className="container text-center">
+				<Button
+					name={"continue"}
+					className={" btn-teal-dark rounded-pill w-50"}
+					clickProp={handleBooking}
+				/>
 
-					{/* <Link to={"/dashboard/checkout"}>
+				{/* <Link to={"/dashboard/checkout"}>
 					</Link> */}
-				</div>
-				<br />
-				<br />
-				<br />
-			</Layout>
+			</div>
+			<br />
+			<br />
+			<br />
 		</>
 	)
 }

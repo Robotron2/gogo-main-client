@@ -32,8 +32,9 @@ const Layout = ({ children, title, description, keywords, author }) => {
 
 Layout.defaultProps = {
 	title: "GoGo - Ride now",
-	description: "Transport System",
-	keywords: "Uber, Taxi, GoGo",
+	description: "Transport System ",
+	keywords:
+		"Uber, Taxi, GoGo, gogo, rides, Ekiti, uber, uber-alternatives, comfort rides, student rides, private rides",
 	author: "Theophilus",
 }
 

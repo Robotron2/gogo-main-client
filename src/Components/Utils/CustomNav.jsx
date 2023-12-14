@@ -11,9 +11,10 @@ const CustomNav = () => {
 	const navigate = useNavigate()
 	const { view, setView } = UseDashboard()
 	const handleLogout = () => {
-		const auth = JSON.parse(localStorage.getItem("auth"))
+		const auth = JSON.parse(sessionStorage.getItem("auth"))
 		if (auth) {
-			localStorage.removeItem("auth")
+			sessionStorage.removeItem("auth")
+			sessionStorage.removeItem("book")
 			toast.success("Logged out successfully!")
 			navigate("/login")
 		}
@@ -57,6 +58,12 @@ const CustomNav = () => {
 							className={
 								view === "user" ? "dash-link dash-link-active" : "dash-link"
 							}
+							onClick={() => {
+								setView("user")
+								if (view !== "user") {
+									navigate("/dashboard/user")
+								}
+							}}
 						>
 							<i className="fa fa-desktop" aria-hidden="true"></i>
 							<p>
@@ -67,6 +74,12 @@ const CustomNav = () => {
 							className={
 								view === "booking" ? "dash-link dash-link-active" : "dash-link"
 							}
+							onClick={() => {
+								setView("booking")
+								if (view !== "booking") {
+									navigate("/dashboard/booking")
+								}
+							}}
 						>
 							<i className="fa fa-child" aria-hidden="true"></i>
 
@@ -79,6 +92,12 @@ const CustomNav = () => {
 							className={
 								view === "summary" ? "dash-link dash-link-active" : "dash-link"
 							}
+							onClick={() => {
+								setView("summary")
+								if (view !== "summary") {
+									navigate("/dashboard/summary")
+								}
+							}}
 						>
 							<i className="fa fa-bus" aria-hidden="true"></i>
 
@@ -88,8 +107,14 @@ const CustomNav = () => {
 						</div>
 						<div
 							className={
-								view === "trip" ? "dash-link dash-link-active" : "dash-link"
+								view === "history" ? "dash-link dash-link-active" : "dash-link"
 							}
+							onClick={() => {
+								setView("history")
+								if (view !== "history") {
+									navigate("/dashboard/history")
+								}
+							}}
 						>
 							<i className="fa fa-bus" aria-hidden="true"></i>
 

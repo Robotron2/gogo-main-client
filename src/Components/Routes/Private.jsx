@@ -11,7 +11,9 @@ const PrivateRoute = () => {
 	const [ok, setOk] = useState("")
 	const [spinner, setSpinner] = useState(null)
 	const [auth, setAuth] = useAuth()
-	const localAuth = JSON.parse(localStorage.getItem("auth"))
+	const localAuth = JSON.parse(sessionStorage.getItem("auth"))
+	const token = `Token ${localAuth?.token}`
+	// console.log(token)
 
 	const authCheck = async () => {
 		setSpinner(true)
@@ -19,7 +21,7 @@ const PrivateRoute = () => {
 		try {
 			const authResponse = await axios.get(`${apiEndpoint}/auth/`, {
 				headers: {
-					Authorization: `Token ${localAuth?.token}`,
+					Authorization: token,
 				},
 			})
 			if (authResponse.data.success) {

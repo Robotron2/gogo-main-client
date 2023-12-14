@@ -10,11 +10,13 @@ import Loading from "../../../Components/Utils/Loading"
 import { motion } from "framer-motion"
 import { Formik, Form, Field, ErrorMessage } from "formik"
 import * as Yup from "yup"
+import UseDashboard from "../../../Components/CustomHooks/dashboard/UseDashboard"
 
 const Login = () => {
 	const [auth, setAuth] = useAuth()
 	const [isLoading, setIsLoading] = useState(false)
 	const navigate = useNavigate()
+	const { setView } = UseDashboard()
 
 	const initialValues = {
 		email: "",
@@ -33,18 +35,11 @@ const Login = () => {
 
 	const onSubmit = async (data) => {
 		setIsLoading(true)
-		// console.log(data)
-		// console.log("Sent")
-		//try to collect data and post to backend here.
-
 		try {
 			const response = await axios.post(
 				`${import.meta.env.VITE_REACT_APP_API}/client-login/`,
 				data
 			)
-
-			// console.log(data)
-			// console.log(response)
 
 			if (response.status == 200) {
 				setAuth({
@@ -52,11 +47,12 @@ const Login = () => {
 					user: response.data.userData,
 					token: response.data.token,
 				})
-				localStorage.setItem("auth", JSON.stringify(response.data))
+				sessionStorage.setItem("auth", JSON.stringify(response.data))
 				// toast.success(response && response.data.message)
 
 				toast.success(response && "Logged in successfully!")
 				setIsLoading(false)
+				setView("user")
 				navigate(location.state || `/dashboard/user`)
 			} else {
 				toast.error("An error occured")
@@ -64,6 +60,12 @@ const Login = () => {
 			}
 		} catch (error) {
 			console.log(error)
+			if (error.response.status == 400) {
+				toast.error("Invalid credentials.")
+				setIsLoading(false)
+			} else {
+				toast.error("Something went wrong. Kindly contact us.")
+			}
 			setIsLoading(false)
 		}
 	}
@@ -84,8 +86,8 @@ const Login = () => {
 				<div className="container login-container mt-1 mb-5">
 					<div className="container login-details">
 						<h4>
-							Making <span className="teal-text">rides</span> seamsless and{" "}
-							<span className="teal-text">accessible</span>
+							Making <span className="teal-text">rides</span> seamless and
+							<span className="teal-text"> accessible.</span>
 						</h4>
 
 						<Formik
@@ -124,9 +126,8 @@ const Login = () => {
 										</label>
 									</div> */}
 									{/* <div className="forgot-password">
-                                            <p>Forgotten Password</p>
-                                        </div> 
-                                    */}
+										<p>Forgotten Password</p>
+									</div> */}
 								</div>
 								{isLoading ? (
 									<Loading />

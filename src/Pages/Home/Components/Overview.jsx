@@ -29,10 +29,17 @@ const Overview = () => {
 							</div>
 
 							<p className="grey-text size-1">
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-								Possimus nisi fuga, esse eaque nobis aliquam. Exercitationem
-								odit laudantium provident, animi iure, excepturi repellat
-								necessitatibus neque ad saepe inventore repellendus maxime!
+								Our innovative transport company bridges the gap between
+								convenience and reliability, offering a comprehensive suite of
+								services that redefine intra-community rides and inter-state
+								logistics.
+							</p>
+							<p className="grey-text size-1">
+								At GoGo Rides, we&apos;re more than just a transportation
+								provider we&apos;re enablers of progress. With a fleet of modern
+								vehicles and a robust technology platform, we empower
+								individuals, families, and businesses to access safe, efficient,
+								and affordable transportation solutions.
 							</p>
 						</div>
 						<div className="col-lg-6 col-md-6 col-sm-12 text-center flex-div-center">

@@ -26,6 +26,7 @@ function App() {
 				<Route path="/register" element={<Register />} />
 
 				<Route path="/location" element={<UserLocation />} />
+
 				<Route path="/dashboard" element={<PrivateRoute />}>
 					<Route path="user" element={<Dashboard />} />
 					<Route path="booking" element={<Booking />} />

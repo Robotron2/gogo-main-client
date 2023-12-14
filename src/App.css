@@ -30,6 +30,11 @@ body {
 	overflow-x: hidden;
 }
 
+.disable-btn {
+	cursor: not-allowed;
+	background-color: red;
+}
+
 .btn:focus,
 .btn:active:focus,
 .btn.active:focus,

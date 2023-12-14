@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
 import { useEffect, useState } from "react"
@@ -14,21 +15,43 @@ import Footer from "../../../Components/Layouts/Footer"
 import CustomNav from "../../../Components/Utils/CustomNav"
 import UseDashboard from "../../../Components/CustomHooks/dashboard/UseDashboard"
 import CustomNavMobile from "../Components/CustomNavMobile"
+import TripCards from "../Components/TripCards"
+import TripCard from "../Components/TripCard"
+import axios from "axios"
 
 const Dashboard = () => {
 	const [auth] = useAuth()
-	const { setView } = UseDashboard()
+	const { view, setView } = UseDashboard()
+	const [lastestRide, setLatestRide] = useState({})
 	const { user } = auth
 	const { email, first_name } = user
+	const localAuth = JSON.parse(sessionStorage.getItem("auth"))
 
 	const navigate = useNavigate()
-
-	const myArray = [1]
-
 	const navBooking = () => {
 		setView("booking")
 		navigate("/dashboard/booking")
 	}
+
+	const fetchHistory = async () => {
+		const response = await axios.get(
+			`${import.meta.env.VITE_REACT_APP_API}/user-ride-list`,
+			{
+				headers: {
+					Authorization: `Token ${localAuth?.token}`,
+				},
+			}
+		)
+		if (response.status == 200) {
+			setLatestRide(response.data.history[0])
+		}
+		// console.log(lastestRide)
+
+		// console.log(rideHistories)
+	}
+	useEffect(() => {
+		fetchHistory()
+	}, [view])
 
 	return (
 		<motion.div
@@ -65,12 +88,21 @@ const Dashboard = () => {
 			</div>
 			<div className="trips ">
 				<div className="container">
-					<div className="div-title">
-						<h6>Upcoming Trip</h6>
+					<div className="div-title text-center">
+						<h6>Last Trip</h6>
 					</div>
+					{lastestRide !== undefined ? (
+						<div className="trip-cards">
+							<TripCard trip={lastestRide} />
+						</div>
+					) : (
+						<>
+							<center>No ride booked yet</center>
+						</>
+					)}
 
 					<div className="trip-cards">
-						{myArray.map((item, i) => {
+						{/* {myArray.map((item, i) => {
 							return (
 								<div className="trip-card" key={i}>
 									<div className="details mx-auto">
@@ -149,7 +181,7 @@ const Dashboard = () => {
 									</div>
 								</div>
 							)
-						})}
+						})} */}
 					</div>
 				</div>
 			</div>

@@ -7,6 +7,7 @@ const BookingProvider = ({ children }) => {
 	const [booking, setBooking] = useState({
 		journey: null,
 		user: null,
+		driver: null,
 	})
 	// console.log(booking)
 	return (

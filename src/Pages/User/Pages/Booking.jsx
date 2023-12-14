@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import axios from "axios"
 import { useEffect, useState } from "react"
 import toast from "react-hot-toast"
@@ -6,16 +7,20 @@ import UseBooking from "../../../Components/CustomHooks/bookings/UseBookings"
 import LocationsDestinations from "../Components/LocationsDestinations"
 import Button from "../../../Components/Utils/Button"
 
-import useAuth from "../../../Components/CustomHooks/UseAuth"
+// import useAuth from "../../../Components/CustomHooks/UseAuth"
 import UseDashboard from "../../../Components/CustomHooks/dashboard/UseDashboard"
 import CustomNav from "../../../Components/Utils/CustomNav"
 import CustomNavMobile from "../Components/CustomNavMobile"
+import Footer from "../../../Components/Layouts/Footer"
+import { motion } from "framer-motion"
+// import RideType from "./../../../Components/Utils/RideType"
 
 function Booking() {
-	const [auth] = useAuth()
+	// const [auth] = useAuth()
 	const { setView } = UseDashboard()
 	const [locations, setLocations] = useState([])
-	const { user } = auth
+
+	const [isBooking, setIsBooking] = useState(false)
 	// const { email, first_name } = user
 
 	const [location, setLocation] = useState("")
@@ -67,11 +72,12 @@ function Booking() {
 		navigate(`/dashboard/${views}`)
 	}
 	const handleBooking = async () => {
+		setIsBooking(true)
 		if (!location || !destination || !passengers) {
 			return toast.error("All fields must be filled")
 		}
-		console.log(journeyData)
-		const localAuth = JSON.parse(localStorage.getItem("auth"))
+		// console.log(journeyData)
+		const localAuth = JSON.parse(sessionStorage.getItem("auth"))
 		try {
 			if (localAuth) {
 				const response = await axios.post(
@@ -83,24 +89,54 @@ function Booking() {
 						},
 					}
 				)
-				if (response.data.user) {
-					setBooking({
-						...booking,
-						user: response.data.user,
+				// console.log(response)
+				if (response.status == 201) {
+					// setBooking({
+					// 	...booking,
+					// 	user: response.data.rideInfo.user,
+					// 	journey: {
+					// 		start: response.data.rideInfo.start_junction.name,
+					// 		end: response.data.rideInfo.end_junction.name,
+					// 		price: response.data.rideInfo.price,
+					// 		passengers: response.data.rideInfo.no_of_passengers,
+					// 		reroute: response.data.rideInfo.two_way,
+					// 		journeyDate,
+					// 	},
+					// 	driver: {
+					// 		driverInfo: {
+					// 			name: `${response.data.driverInfo.driver_details.first_name} ${response.data.driverInfo.driver_details.last_name}`,
+					// 			phone: `${response.data.driverInfo.driver_details.phone_no}`,
+					// 		},
+					// 		carInfo: {
+					// 			model: response.data.driverInfo.car_name,
+					// 		},
+					// 	},
+					// })
+					const bookingData = {
+						user: response.data.rideInfo.user,
 						journey: {
-							start: response.data.start_junction.name,
-							end: response.data.end_junction.name,
-							price: response.data.price,
-							passengers: response.data.no_of_passengers,
-							reroute: response.data.two_way,
+							start: response.data.rideInfo.start_junction.name,
+							end: response.data.rideInfo.end_junction.name,
+							price: response.data.rideInfo.price,
+							passengers: response.data.rideInfo.no_of_passengers,
+							reroute: response.data.rideInfo.two_way,
 							journeyDate,
 						},
-					})
+						driver: {
+							driverInfo: {
+								name: `${response.data.driverInfo.driver_details.first_name} ${response.data.driverInfo.driver_details.last_name}`,
+								phone: `${response.data.driverInfo.driver_details.phone_no}`,
+							},
+							carInfo: {
+								model: response.data.driverInfo.car_name,
+							},
+						},
+					}
+					console.log(booking)
+					sessionStorage.setItem("book", JSON.stringify(bookingData))
+					toast.success("Booking successful!")
 
 					navBooking("summary")
-					console.log(response.data)
-					// console.log(response.data.user)
-					// console.log(booking)
 				}
 			} else {
 				toast.error("Something fishy going on!")
@@ -108,18 +144,17 @@ function Booking() {
 			}
 		} catch (error) {
 			console.log(error)
+			if (error.response.status == 500) {
+				toast.error("Internal server error. Please contact us.")
+			}
+			if (error.response.status == 404) {
+				toast.error("No available ride at the moment. Please book again later.")
+			}
+			if (error.response.status == 400) {
+				toast.error("Price information not available.")
+			}
 		}
-
-		// console.log(journeyData.location)
-		// console.log(journeyData.destination)
-
-		// if (journeyData.location == journeyData.destination) {
-		// 	return toast.error("Error! Location cannot be the same as destination!")
-		// } else {
-		// 	//Post booking details to the backend.
-		// 	console.log(journeyData)
-		// 	toast.success("Booking sent! Check your booking summary.")
-		// }
+		setIsBooking(false)
 	}
 
 	useEffect(() => {
@@ -127,69 +162,74 @@ function Booking() {
 	}, [])
 	return (
 		<>
-			<div className="custom-nav-wrapper">
-				<CustomNav />
-			</div>
-			<>
-				<CustomNavMobile />
-			</>
-			<div className="banner" />
-			<div className="container-fluid p-3">
-				<div className="trip-details ">
-					<div className="container">
-						<div className="input-group flex-nowrap location rounded-pill">
-							<span
-								className="input-group-text fa fa-map-marker pad"
-								id="addon-wrapping"
-							/>
+			<motion.div
+				animate={{ opacity: 1 }}
+				initial={{ opacity: 0 }}
+				exit={{ opacity: 0 }}
+				transition={{ duration: 0.5 }}
+			>
+				<div className="custom-nav-wrapper">
+					<CustomNav />
+				</div>
+				<>
+					<CustomNavMobile />
+				</>
+				<div className="container-fluid p-3">
+					<div className="trip-details ">
+						<div className="container">
+							<div className="input-group flex-nowrap location rounded-pill">
+								<span
+									className="input-group-text fa fa-map-marker pad"
+									id="addon-wrapping"
+								/>
 
-							<LocationsDestinations
-								type={"Select a Location"}
-								selector={handleSelectLocation}
-								locations={locations}
-								where={location}
-							/>
-						</div>
-						<div className="input-group flex-nowrap location rounded-pill">
-							<span
-								className="input-group-text fa fa-map-marker pad"
-								id="addon-wrapping"
-							/>
+								<LocationsDestinations
+									type={"Select a Location"}
+									selector={handleSelectLocation}
+									locations={locations}
+									where={location}
+								/>
+							</div>
+							<div className="input-group flex-nowrap location rounded-pill">
+								<span
+									className="input-group-text fa fa-map-marker pad"
+									id="addon-wrapping"
+								/>
 
-							<LocationsDestinations
-								type={"Select a Location"}
-								selector={handleSelectLocation}
-								locations={locations}
-								where={location}
-							/>
-						</div>
-						<div className="input-group flex-nowrap location rounded-pill">
-							<span
-								className="input-group-text fa fa-map-marker pad"
-								id="addon-wrapping"
-							/>
+								<LocationsDestinations
+									type={"Select a Location"}
+									selector={handleSelectLocation}
+									locations={locations}
+									where={location}
+								/>
+							</div>
+							<div className="input-group flex-nowrap location rounded-pill">
+								<span
+									className="input-group-text fa fa-map-marker pad"
+									id="addon-wrapping"
+								/>
 
-							<LocationsDestinations
-								type={"Select a Location"}
-								selector={handleSelectLocation}
-								locations={locations}
-								where={location}
-							/>
-						</div>
-						<div className="input-group flex-nowrap destination rounded-pill">
-							<span
-								className="input-group-text fa fa-dot-circle-o pad"
-								id="addon-wrapping"
-							/>
+								<LocationsDestinations
+									type={"Select a Location"}
+									selector={handleSelectLocation}
+									locations={locations}
+									where={location}
+								/>
+							</div>
+							<div className="input-group flex-nowrap destination rounded-pill">
+								<span
+									className="input-group-text fa fa-dot-circle-o pad"
+									id="addon-wrapping"
+								/>
 
-							<LocationsDestinations
-								type={"Select a Destination"}
-								selector={handleSelectDestination}
-								locations={locations}
-								where={destination}
-							/>
-						</div>
-						<div className="input-group flex-nowrap departure rounded-pill">
+								<LocationsDestinations
+									type={"Select a Destination"}
+									selector={handleSelectDestination}
+									locations={locations}
+									where={destination}
+								/>
+							</div>
+							{/* <div className="input-group flex-nowrap departure rounded-pill">
 							<span
 								className="input-group-text fa fa fa-calendar pad"
 								id="addon-wrapping"
@@ -201,66 +241,70 @@ function Booking() {
 								aria-label="Username"
 								aria-describedby="addon-wrapping"
 							/>
-						</div>
-						<hr />
-						<div className="trip-route">
-							{/* <input type="number" className="form-control rounded-pill numpas" placeholder="Enter the number of passengers" max={4} min={1} /> */}
+						</div> */}
+							<hr />
+							<div className="trip-route">
+								{/* <input type="number" className="form-control rounded-pill numpas" placeholder="Enter the number of passengers" max={4} min={1} /> */}
 
-							<select
-								className="form-select form-control rounded-pill"
-								value={passengers}
-								onChange={handleSelectPassenger}
-							>
-								<option disabled={true} value="">
-									Number of Passengers
-								</option>
-								<option value="1">1</option>
-								<option value="2">2</option>
-								<option value="3">3</option>
-								<option value="4">4</option>
-							</select>
+								<select
+									className="form-select form-control rounded-pill"
+									value={passengers}
+									onChange={handleSelectPassenger}
+								>
+									<option disabled={true} value="">
+										Passengers
+									</option>
+									<option value="1">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+									<option value="4">4</option>
+								</select>
 
-							<button
-								className={oneWay ? "btn  btn-light" : "btn  btn-outline-light"}
-								onClick={() => {
-									setOneWay(true)
-									setTwoWay(false)
-								}}
-							>
-								Departure Only
-							</button>
-							<button
-								className={twoWay ? "btn  btn-light" : "btn  btn-outline-light"}
-								onClick={() => {
-									setOneWay(false)
-									setTwoWay(true)
-								}}
-							>
-								To-Fro
-							</button>
+								<button
+									className={
+										oneWay ? "btn  btn-light" : "btn  btn-outline-light"
+									}
+									onClick={() => {
+										setOneWay(true)
+										setTwoWay(false)
+									}}
+								>
+									Departure Only
+								</button>
+								<button
+									className={
+										twoWay ? "btn  btn-light" : "btn  btn-outline-light"
+									}
+									onClick={() => {
+										setOneWay(false)
+										setTwoWay(true)
+									}}
+								>
+									To-Fro
+								</button>
+							</div>
 						</div>
 					</div>
 				</div>
+				{/* <div className="container">
+				<RideType title="Select a RIDE for your DEPARTURE" />
 			</div>
-			{/* <div className="container">
-					<RideType title="Select a RIDE for your DEPARTURE" />
+			<div className="container">
+				<RideType title="Select a RIDE for your REROUTE" />
+			</div> */}
+				<div className="container text-center">
+					<Button
+						name={isBooking ? "Please wait..." : "Continue"}
+						className={" btn-teal-dark rounded-pill w-50"}
+						clickProp={handleBooking}
+						disableBtn={isBooking}
+					/>
 				</div>
-				<div className="container">
-					<RideType title="Select a RIDE for your REROUTE" />
-				</div> */}
-			<div className="container text-center">
-				<Button
-					name={"continue"}
-					className={" btn-teal-dark rounded-pill w-50"}
-					clickProp={handleBooking}
-				/>
-
-				{/* <Link to={"/dashboard/checkout"}>
-					</Link> */}
-			</div>
-			<br />
-			<br />
-			<br />
+				<br />
+				<br />
+				<br />
+				<Footer />
+			</motion.div>
 		</>
 	)
 }

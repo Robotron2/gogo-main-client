@@ -1,124 +1,199 @@
-import UseBooking from "../../../Components/CustomHooks/bookings/UseBookings"
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useEffect, useState } from "react"
 import Layout from "../../../Components/Layouts/Layout"
 import "../Css/BookingSummary.css"
+import UseDashboard from "../../../Components/CustomHooks/dashboard/UseDashboard"
+import taxi from "../../../assets/taxi-gogo-animated.png"
+import { useNavigate } from "react-router-dom"
+import { motion } from "framer-motion"
 
 const BookingSummary = () => {
-	const { booking } = UseBooking()
-	console.log(booking)
-	// { journey: { start: 'B', end: 'B', price: '30.00', passengers: 3, reroute: false }, user: { id: 2, first_name: 'user', last_name: 'user' } }
+	const { view, setView } = UseDashboard()
+	const [summaryStatus, setSummaryStatus] = useState(false)
+	const [bookingSummaryData, setBookingSummaryData] = useState({
+		first_name: "",
+		last_name: "",
+		start: "",
+		end: "",
+		price: "",
+		passengers: "",
+		reroute: "",
+		journeyDate: "",
+		driverName: "",
+		phone: "",
+		carModel: "",
+	})
+	const navigate = useNavigate()
 
-	let first_name
-	let last_name
-	let start
-	let end
-	let price
-	let passengers
-	let reroute
-	let journeyDate
-	if (booking?.journey !== null) {
-		sessionStorage.setItem("book", JSON.stringify(booking))
-	}
-
-	if (booking.journey === null) {
+	const checkSummary = () => {
 		const cachedBooking = JSON.parse(sessionStorage.getItem("book"))
-		if (cachedBooking) {
-			// console.log(cachedBooking.user.first_name)
-			first_name = cachedBooking.user.first_name
-			last_name = cachedBooking.user.last_name
-			start = cachedBooking.journey.start
-			end = cachedBooking.journey.end
-			price = cachedBooking.journey.price
-			passengers = cachedBooking.journey.passengers
-			reroute = cachedBooking.journey.reroute
-			journeyDate = cachedBooking.journey.journeyDate
+
+		if (cachedBooking === null) {
+			setSummaryStatus(false)
 		}
-	} else {
-		first_name = booking?.user.first_name
-		last_name = booking?.user.last_name
-		start = booking?.journey.start
-		end = booking?.journey.end
-		price = booking?.journey.price
-		passengers = booking?.journey.passengers
-		reroute = booking?.journey.reroute
-		journeyDate = booking?.journey.journeyDate
+		if (cachedBooking !== null) {
+			// console.log(cachedBooking)
+			setSummaryStatus(true)
+			// console.log(cachedBooking.user.first_name)
+			const { first_name, last_name } = cachedBooking.user
+			const { start, end, price, passengers, reroute, journeyDate } =
+				cachedBooking.journey
+			const { name, phone } = cachedBooking.driver.driverInfo
+			const { model } = cachedBooking.driver.carInfo
+			setBookingSummaryData({
+				first_name,
+				last_name,
+				start,
+				end,
+				price,
+				passengers,
+				reroute,
+				journeyDate,
+				driverName: name,
+				phone,
+				carModel: model,
+			})
+		}
 	}
+
+	useEffect(() => {
+		checkSummary()
+	}, [view])
 
 	return (
 		<>
-			<Layout title={"Booking"}>
-				<div className="container">
-					<center>
-						<div className="booking-container">
-							<div className="booking-title">
-								<h3>Booking confirmed</h3>
-								<p style={{ fontSize: "13px" }}>
-									Thank you for riding with GoGo. Have a smooth ride!
-								</p>
+			<motion.div
+				animate={{ opacity: 1 }}
+				initial={{ opacity: 0 }}
+				exit={{ opacity: 0 }}
+				transition={{ duration: 0.5 }}
+			>
+				<Layout title={"Booking"}>
+					{summaryStatus ? (
+						<>
+							(
+							<div className="container my-4">
+								<center>
+									<div className="booking-container">
+										<div className="booking-title">
+											<h3>Booking confirmed!</h3>
+											{/* <p style={{ fontSize: "13px" }}> */}
+											<p>Thank you for riding with GoGo. Have a smooth ride!</p>
+										</div>
+										<div className="booking-card">
+											<div className="card-hd text-center">
+												<h6>BOOKING SUMMARY</h6>
+											</div>
+											<div className="card-bd-1">
+												<h6>PASSENGER DETAILS</h6>
+												<div className="card-detail">
+													<div className="card-info">
+														<p>Fullname</p>
+														<p>{`${bookingSummaryData?.first_name} ${bookingSummaryData?.last_name}`}</p>
+													</div>
+													<div className="card-info">
+														<p>Number of Passengers</p>
+														<p>{bookingSummaryData?.passengers} </p>
+													</div>
+												</div>
+											</div>
+											<div className="card-bd-1">
+												<h6>DRIVER DETAILS</h6>
+												<div className="card-detail">
+													<div className="card-info">
+														<p>Fullname</p>
+														<p>{bookingSummaryData?.driverName}</p>
+													</div>
+													<div className="card-info">
+														<p>Phone</p>
+														<p>{bookingSummaryData?.phone}</p>
+													</div>
+													<div className="card-info">
+														<p>Car Model</p>
+														<p>{bookingSummaryData?.carModel} </p>
+													</div>
+												</div>
+											</div>
+											<div className="card-bd-1">
+												<h6>DEPARTURE</h6>
+												<div className="card-detail">
+													<div className="card-info">
+														<p>DATE</p>
+														{/* <p>{`${journeyDate.day}/${journeyDate.month}/${journeyDate.year}`}</p> */}
+													</div>
+													<div className="card-info">
+														<p>FROM</p>
+														<p>{bookingSummaryData?.start}</p>
+													</div>
+													<div className="card-info">
+														<p>TO</p>
+														<p>{bookingSummaryData?.end}</p>
+													</div>
+												</div>
+											</div>
+											{bookingSummaryData?.reroute === true && (
+												<div className="card-bd-2">
+													<h6>REROUTE</h6>
+													<div className="card-detail">
+														<div className="card-info">
+															<p>DATE</p>
+															<p>{`${bookingSummaryData?.journeyDate.day}/${bookingSummaryData?.journeyDate.month}/${bookingSummaryData?.journeyDate.year}`}</p>
+														</div>
+														<div className="card-info">
+															<p>FROM</p>
+															<p>{bookingSummaryData?.end}</p>
+														</div>
+														<div className="card-info">
+															<p>TO</p>
+															<p>{bookingSummaryData?.start}</p>
+														</div>
+													</div>
+												</div>
+											)}
+											<div className="card-bt text-right">
+												<h6>
+													TOTAL {bookingSummaryData?.price}
+													<span>NGN</span>
+												</h6>
+											</div>
+										</div>
+									</div>
+								</center>
 							</div>
-							<div className="booking-card">
-								<div className="card-hd text-center">
-									<h6>BOOKING SUMMARY</h6>
-								</div>
-								<div className="card-bd-1">
-									<h6>PASSENGER DETAILS</h6>
-									<div className="card-detail">
-										<div className="card-info">
-											<p>Fullname</p>
-											<p>{`${first_name} ${last_name}`}</p>
-										</div>
-										<div className="card-info">
-											<p>Number of Passengers</p>
-											<p>{passengers} </p>
-										</div>
-									</div>
-								</div>
-								<div className="card-bd-1">
-									<h6>DEPARTURE</h6>
-									<div className="card-detail">
-										<div className="card-info">
-											<p>DATE</p>
-											<p>{`${journeyDate.day}/${journeyDate.month}/${journeyDate.year}`}</p>
-										</div>
-										<div className="card-info">
-											<p>FROM</p>
-											<p>{start}</p>
-										</div>
-										<div className="card-info">
-											<p>TO</p>
-											<p>{end}</p>
-										</div>
-									</div>
-								</div>
-								{reroute === true && (
-									<div className="card-bd-2">
-										<h6>REROUTE</h6>
-										<div className="card-detail">
-											<div className="card-info">
-												<p>DATE</p>
-												<p>{`${journeyDate.day}/${journeyDate.month}/${journeyDate.year}`}</p>
+							)
+						</>
+					) : (
+						<>
+							<div>
+								<center>
+									<div className="container ">
+										<div className="img-and-text-wrapper">
+											<div className="img-text-wrapper">
+												<div className="img-text">
+													<p>No active bookings for this session.</p>
+													<button
+														onClick={() => {
+															setView("history")
+															if (view !== "history") {
+																navigate("/dashboard/history")
+															}
+														}}
+													>
+														Check history
+													</button>
+												</div>
 											</div>
-											<div className="card-info">
-												<p>FROM</p>
-												<p>{end}</p>
-											</div>
-											<div className="card-info">
-												<p>TO</p>
-												<p>{start}</p>
+											<div className="img-wrapper">
+												<img src={taxi} alt="taxi" />
 											</div>
 										</div>
 									</div>
-								)}
-								<div className="card-bt text-right">
-									<h6>
-										TOTAL {price}
-										<span>NGN</span>
-									</h6>
-								</div>
+								</center>
 							</div>
-						</div>
-					</center>
-				</div>
-			</Layout>
+						</>
+					)}
+				</Layout>
+			</motion.div>
 		</>
 	)
 }

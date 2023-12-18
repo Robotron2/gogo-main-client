@@ -2,11 +2,7 @@
 function LocationsDestinations({ type, selector, locations, where }) {
 	return (
 		<>
-			<select
-				className="form-select form-control rounded-pill"
-				onChange={selector}
-				value={where}
-			>
+			<select className="selector" onChange={selector} value={where}>
 				<option disabled={true} value="">
 					{type}
 				</option>

@@ -429,6 +429,125 @@ hr {
 	color: white;
 	transition: ease-in-out;
 }
+/* Start Booking form refactoring */
+.container-booking {
+	padding: 50px;
+	border-radius: 30px;
+	background: #0a4f51;
+	background: #063a27;
+	background: #afdbdbc4;
+	box-shadow: 2px 3px 18px -7px rgba(0, 0, 0, 0.75);
+	-webkit-box-shadow: 2px 3px 18px -7px rgba(0, 0, 0, 0.75);
+	-moz-box-shadow: 2px 3px 18px -7px rgba(0, 0, 0, 0.75);
+}
+
+.booking-div-wrapper {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 10px;
+}
+
+.booking-location-details {
+	width: 60%;
+}
+
+.location-wrapper,
+.destination-wrapper {
+	/* background-color: white; */
+	background: whitesmoke;
+	border-radius: 20px;
+	padding: 5px;
+	margin: 8px;
+	display: flex;
+	justify-content: space-around;
+}
+
+.departure-date-wrapper {
+	/* background-color: white; */
+	background: whitesmoke;
+	height: 30%;
+	width: 20%;
+	border-radius: 20px;
+	padding: 8px;
+	margin: 0 auto;
+	display: flex;
+	justify-content: space-evenly;
+	align-items: baseline;
+}
+
+.selector {
+	width: 90%;
+	padding: 2px;
+	outline: none;
+	border: none;
+	background: transparent;
+}
+
+.extra-journey-data-wrapper {
+	display: flex;
+	justify-content: space-between;
+}
+
+.extra-journey-data-wrapper .passengers {
+	background-color: white;
+	width: 20%;
+	border-radius: 20px;
+	text-align: center;
+}
+
+.passengers select {
+	outline: none;
+	border: none;
+	padding: 10px 5px;
+	width: 80%;
+}
+
+.departure-wrapper,
+.reroute-wrapper,
+.book-ride-btn {
+	border-radius: 50px;
+	width: 20%;
+}
+.journey-btn,
+.book-ride-btn button {
+	padding: 10px;
+	outline: none;
+	border: none;
+	border-radius: 50px;
+	width: 100%;
+	font-weight: 600;
+}
+
+.journey-btn {
+	background: white;
+	color: #0a4f51;
+}
+.book-ride-btn button {
+	color: white;
+	background: #2e6263;
+}
+.book-ride-btn button:hover,
+.book-ride-btn button:active {
+	background: #0a4f51;
+}
+
+.journey-btn:active {
+	background: #0a4f51;
+	color: white;
+	transition: 0.5s;
+}
+
+.route-active {
+	padding: 10px;
+	outline: none;
+	border: none;
+	border-radius: 50px;
+	width: 100%;
+	font-weight: 600;
+	background: #0a4f51;
+	color: white;
+}
 
 /*************************************************MEDIA QUERIES****************************************************************/
 /* TABLET */

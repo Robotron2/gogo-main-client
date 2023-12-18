@@ -41,10 +41,10 @@ const BookingHistory = () => {
 				transition={{ duration: 0.5 }}
 			>
 				<CustomNav />
-				<div className="container mt-4">
+				<div className="container mt-4 mb-5">
 					{userRdieHistories.length > 0 ? (
 						<>
-							<p>Booking History</p>
+							<h3>Booking History</h3>
 							<div className="px-2">
 								<TripCards trips={userRdieHistories} />
 							</div>

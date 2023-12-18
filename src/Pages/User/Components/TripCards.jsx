@@ -19,7 +19,7 @@ function TripCards({ trips }) {
 	// const sortedArray = sortArrayById(trips)
 	// console.log(sortedArray)
 
-	console.log(trips)
+	// console.log(trips)
 	return (
 		<div className="trip-cards">
 			{trips.map((item, i) => {

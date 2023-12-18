@@ -3,14 +3,14 @@ import { useEffect, useState } from "react"
 
 /* eslint-disable react/prop-types */
 function TripCard({ trip }) {
-	const [originalDate, setOriginalDate] = useState(trip.created)
+	const [originalDate, setOriginalDate] = useState(trip?.created)
 	const [formattedDate, setFormattedDate] = useState("")
 	const [formattedTime, setFormattedTime] = useState("")
 
 	useEffect(() => {
 		const dateObject = new Date(originalDate)
 
-		const formatted = dateObject.toLocaleString("en-US", {
+		const dateformatted = dateObject.toLocaleString("en-US", {
 			month: "short",
 			day: "numeric",
 			year: "numeric",
@@ -22,7 +22,7 @@ function TripCard({ trip }) {
 			second: "numeric",
 		})
 
-		setFormattedDate(formatted)
+		setFormattedDate(dateformatted)
 		setFormattedTime(timeFormatted)
 	}, [originalDate])
 

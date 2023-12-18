@@ -99,7 +99,6 @@ body {
 .profile {
 	/* background-color: yellow; */
 	background-color: #f0f8edd3;
-
 	width: 40%;
 	display: flex;
 	align-items: center;
@@ -113,6 +112,7 @@ body {
 
 .user-avatar {
 	border: 1px solid rgba(128, 128, 128, 0.171);
+	border: 1px solid white;
 	border-radius: 100%;
 	overflow: hidden;
 }
@@ -487,6 +487,7 @@ hr {
 .extra-journey-data-wrapper {
 	display: flex;
 	justify-content: space-between;
+	gap: 10px;
 }
 
 .extra-journey-data-wrapper .passengers {
@@ -507,9 +508,17 @@ hr {
 .reroute-wrapper,
 .book-ride-btn {
 	border-radius: 50px;
-	width: 20%;
+	width: 30%;
 }
-.journey-btn,
+.journey-btn {
+	padding: 10px;
+	outline: none;
+	border: none;
+	border-radius: 50px;
+	width: 100%;
+	font-weight: 600;
+}
+
 .book-ride-btn button {
 	padding: 10px;
 	outline: none;
@@ -517,6 +526,24 @@ hr {
 	border-radius: 50px;
 	width: 100%;
 	font-weight: 600;
+}
+
+.logout-btn {
+	background: white;
+	color: #0a4f51;
+	outline: none;
+	border: none;
+	padding: 5px;
+	width: 100px;
+}
+.logout-btn:hover {
+	color: white;
+	background: #074042;
+	transition: 0.5s;
+}
+
+.nav-btn {
+	background: none;
 }
 
 .journey-btn {
@@ -552,6 +579,31 @@ hr {
 /*************************************************MEDIA QUERIES****************************************************************/
 /* TABLET */
 
+@media (max-width: 991px) {
+	.extra-journey-data-wrapper .passengers {
+		width: 25%;
+		display: flex;
+		justify-content: center;
+	}
+	.passengers select {
+		/* padding: 5px; */
+		border-radius: 60px;
+		width: 100%;
+		font-size: 14px;
+	}
+	.departure-wrapper,
+	.reroute-wrapper,
+	.book-ride-btn button {
+		font-size: 14px;
+	}
+}
+
+@media (max-width: 991px) {
+	.profile {
+		width: 70%;
+		gap: 20px;
+	}
+}
 @media (max-width: 834px) {
 	.trip-details > .container {
 		grid-column: 1/12;
@@ -680,6 +732,55 @@ hr {
 	}
 }
 
+@media (max-width: 767px) {
+	.profile {
+		width: 70%;
+		gap: 20px;
+	}
+
+	.booking-location-details {
+		width: 70%;
+	}
+	.booking-location-details svg,
+	.departure-date-wrapper svg {
+		width: 20px;
+		height: 20px;
+	}
+
+	.departure-date-wrapper {
+		width: 30%;
+	}
+
+	.extra-journey-data-wrapper {
+		font-size: 12px;
+	}
+	.extra-journey-data-wrapper .passengers {
+		width: 30%;
+		display: flex;
+		justify-content: center;
+		padding: 0;
+	}
+	.passengers select {
+		/* padding: 5px; */
+		border-radius: 60px;
+		width: 97%;
+		font-size: 12px;
+	}
+	.departure-wrapper,
+	.reroute-wrapper {
+		padding: 0;
+		font-weight: 400;
+	}
+
+	.dash-links-div {
+		width: 100%;
+		height: auto;
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		row-gap: 10px;
+	}
+}
+
 @media (max-device-width: 749px) {
 	.dash-nav-wrapper,
 	.dash-hero-wrapper {
@@ -690,6 +791,7 @@ hr {
 	.custom-nav-mobile-wrapper {
 		display: flex;
 		width: 100%;
+		background: #0a4f51;
 	}
 
 	.mobile-nav-overlay {
@@ -746,10 +848,11 @@ hr {
 	}
 
 	.wrapper-container {
-		display: inline-flex;
+		display: flex;
 		flex-direction: column;
-		justify-content: center;
+		justify-content: space-between;
 		align-items: center;
+		width: 100%;
 	}
 
 	.profile {
@@ -785,20 +888,6 @@ hr {
 		color: #fff;
 	}
 
-	.book-ride-btn {
-		width: 50%;
-		position: absolute;
-		bottom: 0;
-		z-index: 10;
-		margin-bottom: -25px;
-	}
-	.book-ride-btn button {
-		border-radius: 30px;
-		border: 1px solid #225c5c;
-		background: #d4eaea;
-		color: #0a4f51;
-	}
-
 	.trips {
 		margin-top: 50px;
 		margin-bottom: 200px;
@@ -818,5 +907,37 @@ hr {
 	.time-location {
 		padding: 20px;
 		display: flex;
+	}
+}
+
+@media (max-width: 460px) {
+	.extra-journey-data-wrapper {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		flex-direction: column;
+		row-gap: 10px;
+		width: 100%;
+	}
+	.extra-journey-data-wrapper .passengers {
+		grid-column: 1/5;
+		width: 100%;
+	}
+	.departure-wrapper {
+		grid-column: 1/3;
+		width: 100%;
+	}
+	.reroute-wrapper {
+		grid-column: 3/5;
+		width: 100%;
+	}
+
+	.book-ride-btn {
+		grid-column: 1/5;
+		width: 100%;
+		display: flex;
+	}
+	.book-ride-btn button {
+		width: 50%;
+		margin: 0 auto;
 	}
 }

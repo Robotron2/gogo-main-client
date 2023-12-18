@@ -42,10 +42,11 @@ const CustomNav = () => {
 							</h6>
 							<p>Let&apos;s get you to your next stop.</p>
 						</div>
-						<div className="logout">
+						<div className="logout w-full">
 							{/* <Button className={"btn btn-sm bg-white"} name={"Logout"} /> */}
 							<Button
-								className={"btn btn-sm bg-white"}
+								// className={"btn btn-sm bg-white"}
+								className={"logout-btn rounded-pill"}
 								name={"Logout"}
 								clickProp={handleLogout}
 							/>
@@ -119,7 +120,7 @@ const CustomNav = () => {
 							<i className="fa fa-bus" aria-hidden="true"></i>
 
 							<p>
-								<Link>My trips</Link>
+								<Link>Trips</Link>
 							</p>
 						</div>
 						<div

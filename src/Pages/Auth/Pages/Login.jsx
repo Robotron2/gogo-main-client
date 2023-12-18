@@ -57,6 +57,7 @@ const Login = () => {
 			} else {
 				toast.error("An error occured")
 				setIsLoading(false)
+				console.log(response)
 			}
 		} catch (error) {
 			console.log(error)
@@ -68,6 +69,8 @@ const Login = () => {
 			}
 			setIsLoading(false)
 		}
+		setIsLoading(false)
+		console.log("Done")
 	}
 
 	return (
@@ -105,6 +108,7 @@ const Login = () => {
 									className="form-control rounded-pill neu-input"
 									name="email"
 									placeholder="Your email"
+									onFocus={() => setIsLoading(false)}
 								/>
 
 								<label className="teal-text">Password</label>
@@ -116,6 +120,7 @@ const Login = () => {
 									className="form-control rounded-pill neu-input"
 									name="password"
 									placeholder="Your password"
+									onFocus={() => setIsLoading(false)}
 								/>
 
 								<div className="form-group form-check check">

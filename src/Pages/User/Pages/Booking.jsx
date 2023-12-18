@@ -117,6 +117,7 @@ function Booking() {
 			// console.log(error)
 			if (error.response.status == 500) {
 				toast.error("Internal server error. Please contact us.")
+				// console.log(error)
 				setView("user")
 				navigate("/dashboard/user")
 			}
@@ -153,6 +154,8 @@ function Booking() {
 					<CustomNavMobile />
 				</>
 
+				<br />
+				<br />
 				<br />
 				<div className="container container-booking">
 					<div className="booking-div-wrapper">
@@ -248,7 +251,7 @@ function Booking() {
 									setTwoWay(false)
 								}}
 							>
-								Departure only
+								Go only
 							</button>
 						</div>
 						<div className="reroute-wrapper">
@@ -259,7 +262,7 @@ function Booking() {
 									setTwoWay(true)
 								}}
 							>
-								To-Fro
+								Go-Come
 							</button>
 						</div>
 						<div className="book-ride-btn">
@@ -271,9 +274,7 @@ function Booking() {
 						</div>
 					</div>
 				</div>
-				<br />
-				<br />
-				<br />
+
 				<br />
 				<br />
 				<br />

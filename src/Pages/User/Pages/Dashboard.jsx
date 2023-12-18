@@ -22,7 +22,7 @@ import axios from "axios"
 const Dashboard = () => {
 	const [auth] = useAuth()
 	const { view, setView } = UseDashboard()
-	const [lastestRide, setLatestRide] = useState({})
+	const [lastestRide, setLatestRide] = useState(null)
 	const { user } = auth
 	const { email, first_name } = user
 	const localAuth = JSON.parse(sessionStorage.getItem("auth"))
@@ -42,10 +42,11 @@ const Dashboard = () => {
 				},
 			}
 		)
+
 		if (response.status == 200) {
 			setLatestRide(response.data.history[0])
+			// console.log(response)
 		}
-		// console.log(lastestRide)
 
 		// console.log(rideHistories)
 	}
@@ -78,11 +79,13 @@ const Dashboard = () => {
 					</div>
 
 					<div className="book-ride-btn">
-						<Button
-							name={"Book a ride"}
-							className={"btn btn-teal-dark rounded-pill w-100"}
-							clickProp={navBooking}
-						/>
+						<button
+							// className="btn btn-teal-dark rounded-pill w-100"
+							className=""
+							onClick={navBooking}
+						>
+							Book a ride
+						</button>
 					</div>
 				</div>
 			</div>
@@ -91,7 +94,7 @@ const Dashboard = () => {
 					<div className="div-title text-center">
 						<h6>Last Trip</h6>
 					</div>
-					{lastestRide !== undefined ? (
+					{lastestRide !== undefined && lastestRide !== null ? (
 						<div className="trip-cards">
 							<TripCard trip={lastestRide} />
 						</div>

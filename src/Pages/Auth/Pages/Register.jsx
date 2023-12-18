@@ -69,6 +69,7 @@ const Register = () => {
 			console.log(error)
 			setIsLoading(false)
 		}
+		setIsLoading(false)
 	}
 
 	return (
@@ -84,7 +85,7 @@ const Register = () => {
 						<Logo />
 					</Link>
 				</div>
-				<div className="container login-container mb-5">
+				<div className="container login-container">
 					<div className="container login-details">
 						<h4>
 							Making <span className="teal-text">rides</span> seamless and

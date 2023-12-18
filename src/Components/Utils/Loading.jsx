@@ -1,10 +1,15 @@
 const Loading = () => {
 	return (
-		<>
+		<div className="border border-secondary rounded-pill">
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
 				xmlnsXlink="http://www.w3.org/1999/xlink"
-				style={{ margin: "auto", background: "none", display: "block", shapeRendering: "auto" }}
+				style={{
+					margin: "auto",
+					background: "none",
+					display: "block",
+					shapeRendering: "auto",
+				}}
 				width="50px"
 				height="50px"
 				viewBox="0 0 100 100"
@@ -19,10 +24,16 @@ const Loading = () => {
 					strokeLinecap="round"
 					style={{ transform: "scale(0.66)", transformOrigin: "50px 50px" }}
 				>
-					<animate attributeName="stroke-dashoffset" repeatCount="indefinite" dur="1s" keyTimes="0;1" values="0;256.58892822265625" />
+					<animate
+						attributeName="stroke-dashoffset"
+						repeatCount="indefinite"
+						dur="1s"
+						keyTimes="0;1"
+						values="0;256.58892822265625"
+					/>
 				</path>
 			</svg>
-		</>
+		</div>
 	)
 }
 

@@ -18,7 +18,7 @@ const Footer = () => {
 							<div className="logo-address">
 								<img src={LogoLight} alt="Logo" width={100} height={100} />
 								<div className="address-text">
-									<p>564, Example road, F1 456 Caron Town</p>
+									<p>9, Usin Street, Ikole-Ekiti, Ekiti State.</p>
 									<p>Office No 346</p>
 								</div>
 							</div>
@@ -51,8 +51,13 @@ const Footer = () => {
 					<div className="footer-about">
 						<h4>About Us</h4>
 						<div>
-							<p>Our Mission</p>
-							<p>Our Vision</p>
+							<p>
+								<a href="#mission">Our Mission</a>
+							</p>
+							<p>
+								<a href="#vision">Our Vision</a>
+							</p>
+
 							<p>Contact Us</p>
 						</div>
 					</div>

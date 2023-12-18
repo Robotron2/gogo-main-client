@@ -13,22 +13,12 @@ body {
 .mapboxgl-control-container {
 	display: none;
 }
-/* .banner {
-	background: linear-gradient(#0a4f51, #fafafa);
-	position: absolute;
-	height: 350px;
-	width: 100%;
-	z-index: -1;
-} */
+
+.custom-nav-mobile-wrapper {
+	display: none;
+}
+
 .dash-hero-wrapper {
-	/* background: linear-gradient(#0a4f51, #fafafa23); */
-	/* background: linear-gradient(70% #0a4f51, 30% ); */
-	/* background: linear-gradient(to bottom, #0a4f51 40%,  #618281 100%);        */
-
-	/* background: linear-gradient(to bottom, #0a4f51 93%, #808080 5%, #fff 2%);        */
-
-	/* position: absolute; */
-	/* z-index: -1; */
 	height: 230px;
 	flex-shrink: 0;
 	width: 100%;
@@ -109,7 +99,6 @@ body {
 .profile {
 	/* background-color: yellow; */
 	background-color: #f0f8edd3;
-
 	width: 40%;
 	display: flex;
 	align-items: center;
@@ -123,6 +112,7 @@ body {
 
 .user-avatar {
 	border: 1px solid rgba(128, 128, 128, 0.171);
+	border: 1px solid white;
 	border-radius: 100%;
 	overflow: hidden;
 }
@@ -134,6 +124,7 @@ body {
 .user-details h6 {
 	font-weight: 900;
 	font-size: 18px;
+	text-transform: capitalize;
 }
 .user-details p {
 	color: grey;
@@ -165,6 +156,10 @@ body {
 	margin-right: 2px;
 	display: inline;
 	font-weight: 900;
+}
+
+.trips {
+	margin-bottom: 100px;
 }
 .trips .div-title {
 	height: 50px;
@@ -249,9 +244,15 @@ body {
 }
 
 .time-location {
-	padding: 20px;
+	padding: 15px;
 	display: flex;
-	justify-content: space-between;
+	/* justify-content: space-between; */
+	justify-content: space-evenly;
+	color: #34394a;
+	font-family: Montserrat;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 40px; /* 138.75% */
 }
 .time-location h6 {
 	color: grey;
@@ -291,9 +292,9 @@ body {
 	grid-gap: 0px;
 	padding: 60px;
 	border-radius: 20px;
-	box-shadow: 3px 3px 0px 0px var(--grey);
-	-webkit-box-shadow: 3px 3px 0px 0px var(--grey);
-	-moz-box-shadow: 3px 3px 0px 0px var(--grey);
+	box-shadow: -1px 5px 30px -2px rgba(0, 0, 0, 0.7);
+	-webkit-box-shadow: -1px 5px 30px -2px rgba(0, 0, 0, 0.7);
+	-moz-box-shadow: -1px 5px 30px -2px rgba(0, 0, 0, 0.7);
 }
 .location {
 	grid-column: 1/7;
@@ -428,10 +429,181 @@ hr {
 	color: white;
 	transition: ease-in-out;
 }
+/* Start Booking form refactoring */
+.container-booking {
+	padding: 50px;
+	border-radius: 30px;
+	background: #0a4f51;
+	background: #063a27;
+	background: #afdbdbc4;
+	box-shadow: 2px 3px 18px -7px rgba(0, 0, 0, 0.75);
+	-webkit-box-shadow: 2px 3px 18px -7px rgba(0, 0, 0, 0.75);
+	-moz-box-shadow: 2px 3px 18px -7px rgba(0, 0, 0, 0.75);
+}
+
+.booking-div-wrapper {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 10px;
+}
+
+.booking-location-details {
+	width: 60%;
+}
+
+.location-wrapper,
+.destination-wrapper {
+	/* background-color: white; */
+	background: whitesmoke;
+	border-radius: 20px;
+	padding: 5px;
+	margin: 8px;
+	display: flex;
+	justify-content: space-around;
+}
+
+.departure-date-wrapper {
+	/* background-color: white; */
+	background: whitesmoke;
+	height: 30%;
+	width: 20%;
+	border-radius: 20px;
+	padding: 8px;
+	margin: 0 auto;
+	display: flex;
+	justify-content: space-evenly;
+	align-items: baseline;
+}
+
+.selector {
+	width: 90%;
+	padding: 2px;
+	outline: none;
+	border: none;
+	background: transparent;
+}
+
+.extra-journey-data-wrapper {
+	display: flex;
+	justify-content: space-between;
+	gap: 10px;
+}
+
+.extra-journey-data-wrapper .passengers {
+	background-color: white;
+	width: 20%;
+	border-radius: 20px;
+	text-align: center;
+}
+
+.passengers select {
+	outline: none;
+	border: none;
+	padding: 10px 5px;
+	width: 80%;
+}
+
+.departure-wrapper,
+.reroute-wrapper,
+.book-ride-btn {
+	border-radius: 50px;
+	width: 30%;
+}
+.journey-btn {
+	padding: 10px;
+	outline: none;
+	border: none;
+	border-radius: 50px;
+	width: 100%;
+	font-weight: 600;
+}
+
+.book-ride-btn button {
+	padding: 10px;
+	outline: none;
+	border: none;
+	border-radius: 50px;
+	width: 100%;
+	font-weight: 600;
+}
+
+.logout-btn {
+	background: white;
+	color: #0a4f51;
+	outline: none;
+	border: none;
+	padding: 5px;
+	width: 100px;
+}
+.logout-btn:hover {
+	color: white;
+	background: #074042;
+	transition: 0.5s;
+}
+
+.nav-btn {
+	background: none;
+}
+
+.journey-btn {
+	background: white;
+	color: #0a4f51;
+}
+.book-ride-btn button {
+	color: white;
+	background: #2e6263;
+}
+.book-ride-btn button:hover,
+.book-ride-btn button:active {
+	background: #0a4f51;
+}
+
+.journey-btn:active {
+	background: #0a4f51;
+	color: white;
+	transition: 0.5s;
+}
+
+.route-active {
+	padding: 10px;
+	outline: none;
+	border: none;
+	border-radius: 50px;
+	width: 100%;
+	font-weight: 600;
+	background: #0a4f51;
+	color: white;
+}
 
 /*************************************************MEDIA QUERIES****************************************************************/
 /* TABLET */
 
+@media (max-width: 991px) {
+	.extra-journey-data-wrapper .passengers {
+		width: 25%;
+		display: flex;
+		justify-content: center;
+	}
+	.passengers select {
+		/* padding: 5px; */
+		border-radius: 60px;
+		width: 100%;
+		font-size: 14px;
+	}
+	.departure-wrapper,
+	.reroute-wrapper,
+	.book-ride-btn button {
+		font-size: 14px;
+	}
+}
+
+@media (max-width: 991px) {
+	.profile {
+		width: 70%;
+		gap: 20px;
+	}
+}
 @media (max-width: 834px) {
 	.trip-details > .container {
 		grid-column: 1/12;
@@ -527,7 +699,6 @@ hr {
 		padding: 18px;
 	}
 }
-/* 	MOBILE */
 
 @media (max-width: 450px) {
 	.trip-details > .container {
@@ -558,5 +729,215 @@ hr {
 	}
 	.mb-d-card-1 {
 		display: none;
+	}
+}
+
+@media (max-width: 767px) {
+	.profile {
+		width: 70%;
+		gap: 20px;
+	}
+
+	.booking-location-details {
+		width: 70%;
+	}
+	.booking-location-details svg,
+	.departure-date-wrapper svg {
+		width: 20px;
+		height: 20px;
+	}
+
+	.departure-date-wrapper {
+		width: 30%;
+	}
+
+	.extra-journey-data-wrapper {
+		font-size: 12px;
+	}
+	.extra-journey-data-wrapper .passengers {
+		width: 30%;
+		display: flex;
+		justify-content: center;
+		padding: 0;
+	}
+	.passengers select {
+		/* padding: 5px; */
+		border-radius: 60px;
+		width: 97%;
+		font-size: 12px;
+	}
+	.departure-wrapper,
+	.reroute-wrapper {
+		padding: 0;
+		font-weight: 400;
+	}
+
+	.dash-links-div {
+		width: 100%;
+		height: auto;
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		row-gap: 10px;
+	}
+}
+
+@media (max-device-width: 749px) {
+	.dash-nav-wrapper,
+	.dash-hero-wrapper {
+		display: none;
+	}
+
+	/* Custom Nav Mobile */
+	.custom-nav-mobile-wrapper {
+		display: flex;
+		width: 100%;
+		background: #0a4f51;
+	}
+
+	.mobile-nav-overlay {
+		position: absolute;
+		z-index: 40;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background: #0f4a4c;
+		opacity: 0.9;
+		backdrop-filter: blur(1000px);
+	}
+
+	.mobile-nav-content-wrapper {
+		position: relative;
+		z-index: 50;
+		display: flex;
+		flex-direction: column;
+		align-items: end;
+		padding: 10px 15px;
+		gap: 10px;
+		color: #fff;
+	}
+
+	.mobile-nav-content {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+
+	.custom-nav-wrapper {
+		display: none;
+	}
+	.custom-nav-mobile {
+		/* background-color: #ffff; */
+		display: inline-flex;
+		padding: 5px 10px;
+		justify-content: space-between;
+		align-items: center;
+	}
+
+	.user-profile-wrapper {
+		background: linear-gradient(
+			180deg,
+			#0a4f51 40.1%,
+			rgba(0, 18, 10, 0) 179.95%
+		);
+		border: 1.5px solid #62a4a6;
+		padding: 0;
+		display: flex;
+		align-items: center;
+		position: relative;
+	}
+
+	.wrapper-container {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		align-items: center;
+		width: 100%;
+	}
+
+	.profile {
+		background-color: inherit;
+		width: 60%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		gap: 5px;
+		padding: 5px;
+		margin: 0 auto;
+		border-radius: 15px;
+		box-shadow: none;
+		color: #fff;
+	}
+
+	/* .user-avatar {
+		border: none;
+	} */
+
+	.user-details {
+		margin-right: 20px auto;
+		text-align: center;
+		font-size: 12px;
+		width: 100%;
+	}
+	.user-details h6 {
+		font-weight: 900;
+		font-size: 18px;
+	}
+	.user-details p {
+		color: #fff;
+	}
+
+	.trips {
+		margin-top: 50px;
+		margin-bottom: 200px;
+	}
+
+	.trip-cards {
+		display: grid;
+		grid-template-columns: repeat(1, 1fr);
+		grid-auto-rows: minmax(200px, auto);
+	}
+	.trip-card {
+		background-color: white;
+		border: 1px solid rgba(128, 128, 128, 0.486);
+		border-radius: 20px;
+	}
+
+	.time-location {
+		padding: 20px;
+		display: flex;
+	}
+}
+
+@media (max-width: 460px) {
+	.extra-journey-data-wrapper {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		flex-direction: column;
+		row-gap: 10px;
+		width: 100%;
+	}
+	.extra-journey-data-wrapper .passengers {
+		grid-column: 1/5;
+		width: 100%;
+	}
+	.departure-wrapper {
+		grid-column: 1/3;
+		width: 100%;
+	}
+	.reroute-wrapper {
+		grid-column: 3/5;
+		width: 100%;
+	}
+
+	.book-ride-btn {
+		grid-column: 1/5;
+		width: 100%;
+		display: flex;
+	}
+	.book-ride-btn button {
+		width: 50%;
+		margin: 0 auto;
 	}
 }

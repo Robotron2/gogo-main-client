@@ -30,6 +30,21 @@ body {
 	overflow-x: hidden;
 }
 
+.disable-btn {
+	cursor: not-allowed;
+	background-color: red;
+}
+
+.btn:focus,
+.btn:active:focus,
+.btn.active:focus,
+.btn.focus,
+.btn:active.focus,
+.btn.active.focus {
+	outline: none;
+	box-shadow: none !important;
+}
+
 section {
 	margin-bottom: 50px;
 	padding: 10px 20px;

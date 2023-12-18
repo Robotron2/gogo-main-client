@@ -6,6 +6,10 @@
 	box-shadow: 15px 15px 20px #cbced1, -15px -15px 20px #eaf6f6;
 	border-radius: 10px;
 	background: #eaf6f6;
+	background: white;
+	gap: 20px;
+	padding: 0;
+	padding-left: 15px;
 }
 
 .login-container form {
@@ -48,8 +52,11 @@
 @media (max-width: 834px) {
 	.login-container {
 		padding: 10px;
-		margin: 0 5px;
+		margin: 0 auto;
 		overflow: hidden;
+		background: white;
+		width: 90%;
+		margin-bottom: 0;
 	}
 
 	.login-details {

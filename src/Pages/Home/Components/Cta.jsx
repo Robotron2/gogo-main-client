@@ -33,7 +33,7 @@ const Cta = () => {
 								Book a <span className="cyan">ride</span> at your convenience
 							</h2>
 						</div>
-						<div className="goal">
+						<div className="goal" id="mission">
 							<h6>
 								{/* <i className="fa fa-map-marker " aria-hidden="true" /> */}
 								<svg
@@ -66,7 +66,7 @@ const Cta = () => {
 								Empowering Seamless Mobility and Connectivity
 							</p>
 						</div>
-						<div className="vision">
+						<div className="vision" id="vision">
 							<h6>
 								{/* <i className="fa fa-map-marker " aria-hidden="true" /> */}
 								<svg

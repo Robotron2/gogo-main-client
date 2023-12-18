@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 import DashboardContext from "./DashboardContext"
 
 const DashboardProvider = ({ children }) => {
-	const [view, setView] = useState("user")
+	const [view, setView] = useState("")
 	const viewSetter = () => {
 		const currentPath = window.location.pathname
 
@@ -12,7 +12,7 @@ const DashboardProvider = ({ children }) => {
 		let lastPart = pathParts[pathParts.length - 1]
 		setView(lastPart)
 
-		console.log('Value after the last "/":', lastPart)
+		// console.log('Value after the last "/":', lastPart)
 	}
 	useEffect(() => {
 		viewSetter()

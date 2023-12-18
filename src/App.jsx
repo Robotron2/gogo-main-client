@@ -2,7 +2,7 @@ import { Routes, Route, useLocation } from "react-router-dom"
 import Home from "./Pages/Home/Pages/Home"
 import Login from "./Pages/Auth/Pages/Login"
 import Register from "./Pages/Auth/Pages/Register"
-import UserLocation from "./Pages/User/Components/UserLocation"
+// import UserLocation from "./Pages/User/Components/UserLocation"
 import PrivateRoute from "./Components/Routes/Private"
 import Dashboard from "./Pages/User/Pages/Dashboard"
 import Map from "./Pages/Home/Pages/Map"
@@ -25,7 +25,8 @@ function App() {
 				<Route path="/login" element={<Login />} />
 				<Route path="/register" element={<Register />} />
 
-				<Route path="/location" element={<UserLocation />} />
+				{/* <Route path="/location" element={<UserLocation />} /> */}
+
 				<Route path="/dashboard" element={<PrivateRoute />}>
 					<Route path="user" element={<Dashboard />} />
 					<Route path="booking" element={<Booking />} />

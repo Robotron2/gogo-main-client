@@ -1,46 +1,58 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
 import { useEffect, useState } from "react"
 import "../Css/Dashboard.css"
 import useAuth from "../../../Components/CustomHooks/UseAuth"
-// import RideType from "./../../../Components/Utils/RideType"
-import Layout from "../../../Components/Layouts/Layout"
+
 import Button from "../../../Components/Utils/Button"
-// import { Link } from "react-router-dom"
+
 import { motion } from "framer-motion"
-import LocationsDestinations from "../Components/LocationsDestinations"
-import toast from "react-hot-toast"
-import axios from "axios"
 import UseBooking from "../../../Components/CustomHooks/bookings/UseBookings"
-import { Link, useNavigate } from "react-router-dom"
-import LogoLight from "../../../assets/gogo-light.png"
+import { useNavigate } from "react-router-dom"
 import avatar from "../../../assets/user.png"
 import Footer from "../../../Components/Layouts/Footer"
 import CustomNav from "../../../Components/Utils/CustomNav"
 import UseDashboard from "../../../Components/CustomHooks/dashboard/UseDashboard"
+import CustomNavMobile from "../Components/CustomNavMobile"
+import TripCards from "../Components/TripCards"
+import TripCard from "../Components/TripCard"
+import axios from "axios"
 
 const Dashboard = () => {
 	const [auth] = useAuth()
-	const { setView } = UseDashboard()
+	const { view, setView } = UseDashboard()
+	const [lastestRide, setLatestRide] = useState(null)
 	const { user } = auth
 	const { email, first_name } = user
+	const localAuth = JSON.parse(sessionStorage.getItem("auth"))
 
-	const [location, setLocation] = useState("")
-	const [destination, setDestination] = useState("")
-	const [oneWay, setOneWay] = useState(1)
-	const [twoWay, setTwoWay] = useState(0)
-	const [passengers, setPassengers] = useState("")
-	const [locations, setLocations] = useState([])
-
-	const { booking, setBooking } = UseBooking()
 	const navigate = useNavigate()
-
-	const myArray = [1, 2, 3, 4]
-
 	const navBooking = () => {
 		setView("booking")
 		navigate("/dashboard/booking")
 	}
+
+	const fetchHistory = async () => {
+		const response = await axios.get(
+			`${import.meta.env.VITE_REACT_APP_API}/user-ride-list`,
+			{
+				headers: {
+					Authorization: `Token ${localAuth?.token}`,
+				},
+			}
+		)
+
+		if (response.status == 200) {
+			setLatestRide(response.data.history[0])
+			// console.log(response)
+		}
+
+		// console.log(rideHistories)
+	}
+	useEffect(() => {
+		fetchHistory()
+	}, [view])
 
 	return (
 		<motion.div
@@ -60,29 +72,40 @@ const Dashboard = () => {
 								<img src={avatar} alt="avatar" />
 							</div>
 							<div className="user-details">
-								<h6>Opeyemi Oluwaseun</h6>
+								<h6>{first_name}</h6>
 								<p>Welcome back!</p>
 							</div>
 						</div>
 					</div>
 
 					<div className="book-ride-btn">
-						<Button
-							name={"Book a ride"}
-							className={"btn btn-teal-dark rounded-pill w-100"}
-							clickProp={navBooking}
-						/>
+						<button
+							// className="btn btn-teal-dark rounded-pill w-100"
+							className=""
+							onClick={navBooking}
+						>
+							Book a ride
+						</button>
 					</div>
 				</div>
 			</div>
-			<div className="trips mt-2 ">
+			<div className="trips ">
 				<div className="container">
-					<div className="div-title">
-						<h6>Ride request</h6>
+					<div className="div-title text-center">
+						<h6>Last Trip</h6>
 					</div>
+					{lastestRide !== undefined && lastestRide !== null ? (
+						<div className="trip-cards">
+							<TripCard trip={lastestRide} />
+						</div>
+					) : (
+						<>
+							<center>No ride booked yet</center>
+						</>
+					)}
 
 					<div className="trip-cards">
-						{myArray.map((item, i) => {
+						{/* {myArray.map((item, i) => {
 							return (
 								<div className="trip-card" key={i}>
 									<div className="details mx-auto">
@@ -161,7 +184,7 @@ const Dashboard = () => {
 									</div>
 								</div>
 							)
-						})}
+						})} */}
 					</div>
 				</div>
 			</div>

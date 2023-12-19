@@ -1,9 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Dosis&family=Red+Hat+Display&family=Rubik+Vinyl&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Open+Sans:wght@600&family=Roboto&display=swap");
-body {
-	background-color: red !important;
-	font-size: 300px !important;
-}
+
 :root {
 	--white: #fff;
 	--black: #000;

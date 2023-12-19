@@ -32,7 +32,7 @@ function TripCard({ trip }) {
 			<div className="details mx-auto">
 				<div className="trip">
 					<p>
-						<span className="text-secondary">Trip id:</span> {trip?.id}
+						<span className="text-secondary">Trip id:</span> go-{trip?.id}
 					</p>
 					<p>
 						<span className="text-secondary">Date:</span> {formattedDate}

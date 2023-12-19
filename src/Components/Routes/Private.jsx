@@ -22,15 +22,16 @@ const PrivateRoute = () => {
 			const authResponse = await axios.get(`${apiEndpoint}/auth/`, {
 				headers: {
 					Authorization: token,
+					// Authorization: "dbc14e60ec35b03839f8",
 				},
 			})
 			if (authResponse.data.success) {
 				setOk(true)
 				setSpinner(false)
 			}
-			// console.log(authResponse)
+			console.log(authResponse)
 		} catch (error) {
-			console.log(error)
+			// console.log(error)
 			setOk(false)
 		}
 		setSpinner(false)

@@ -54,6 +54,7 @@ const BookingSummary = () => {
 				carModel: model,
 			})
 		}
+		// console.log(cachedBooking)
 	}
 
 	useEffect(() => {
@@ -119,7 +120,8 @@ const BookingSummary = () => {
 												<div className="card-detail">
 													<div className="card-info">
 														<p>DATE</p>
-														{/* <p>{`${journeyDate.day}/${journeyDate.month}/${journeyDate.year}`}</p> */}
+
+														<p>{bookingSummaryData?.journeyDate}</p>
 													</div>
 													<div className="card-info">
 														<p>FROM</p>
@@ -137,7 +139,8 @@ const BookingSummary = () => {
 													<div className="card-detail">
 														<div className="card-info">
 															<p>DATE</p>
-															<p>{`${bookingSummaryData?.journeyDate.day}/${bookingSummaryData?.journeyDate.month}/${bookingSummaryData?.journeyDate.year}`}</p>
+
+															<p>{bookingSummaryData?.journeyDate}</p>
 														</div>
 														<div className="card-info">
 															<p>FROM</p>

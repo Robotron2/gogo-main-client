@@ -92,6 +92,7 @@ html {
 .bg-teal-dark {
 	background: var(--light-bg-green);
 }
+
 .btn-teal-dark {
 	padding: 0.5em;
 	background: var(--light-bg-green);
@@ -99,10 +100,13 @@ html {
 	outline: none;
 	border: none;
 }
-.btn-teal-dark:hover {
+.btn-teal-dark:hover,
+.btn-teal-dark:focus {
 	outline: none;
 	border: none;
 	transition: 0.1s ease-in-out;
+	background: var(--light-bg-green);
+	color: var(--white);
 }
 
 .size-1 {

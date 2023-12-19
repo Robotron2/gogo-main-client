@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom"
 import Button from "../../../Components/Utils/Button"
-import toast from "react-hot-toast"
+// import toast from "react-hot-toast"
 
 const Cta = () => {
-	const toastUser = () => {
-		toast.error("User registrations will be online once we launch fully")
-	}
+	// const toastUser = () => {
+	// 	toast.error("User registrations will be online once we launch fully")
+	// }
 	return (
 		<>
 			<section className="about-section">
@@ -114,11 +114,11 @@ const Cta = () => {
 							</p>
 						</div>
 
-						<Link>
+						<Link to={"/register"}>
 							<Button
 								className={"btn p-2 rounded-pill"}
 								name={"Sign Up"}
-								clickProp={toastUser}
+								// clickProp={toastUser}
 							/>
 						</Link>
 						{/* <Link to={"/register"}>

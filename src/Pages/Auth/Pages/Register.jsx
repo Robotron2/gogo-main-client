@@ -159,7 +159,7 @@ const Register = () => {
 									<Loading />
 								) : (
 									<Button
-										className="btn bg-teal-dark rounded-pill text-white form-control p-2 mt-4"
+										className="btn-teal-dark bg-teal-dark rounded-pill text-white form-control p-2 mt-3"
 										name={"Register"}
 										type={"submit"}
 									/>

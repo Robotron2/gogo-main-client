@@ -1,6 +1,13 @@
 const Loading = () => {
 	return (
-		<div className="border border-secondary rounded-pill">
+		<div
+			style={{
+				border: "1px solid grey",
+				marginTop: "3px",
+				borderRadius: "50px",
+				padding: "0",
+			}}
+		>
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
 				xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -11,7 +18,7 @@ const Loading = () => {
 					shapeRendering: "auto",
 				}}
 				width="50px"
-				height="50px"
+				height="35px"
 				viewBox="0 0 100 100"
 				preserveAspectRatio="xMidYMid"
 			>

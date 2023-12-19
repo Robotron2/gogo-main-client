@@ -123,7 +123,7 @@ const CustomNav = () => {
 								<Link>Trips</Link>
 							</p>
 						</div>
-						<div
+						{/* <div
 							className={
 								view === "membership"
 									? "dash-link dash-link-active"
@@ -146,7 +146,7 @@ const CustomNav = () => {
 							<p>
 								<Link>Profile</Link>
 							</p>
-						</div>
+						</div> */}
 					</div>
 				</div>
 			</div>

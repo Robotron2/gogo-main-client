@@ -60,6 +60,7 @@ const Login = () => {
 				console.log(response)
 			}
 		} catch (error) {
+			setIsLoading(false)
 			console.log(error)
 			if (error.response.status == 400) {
 				toast.error("Invalid credentials.")
@@ -67,10 +68,8 @@ const Login = () => {
 			} else {
 				toast.error("Something went wrong. Kindly contact us.")
 			}
-			setIsLoading(false)
 		}
 		setIsLoading(false)
-		console.log("Done")
 	}
 
 	return (
@@ -138,7 +137,7 @@ const Login = () => {
 									<Loading />
 								) : (
 									<Button
-										className="btn bg-teal-dark rounded-pill text-white form-control p-2 m--2"
+										className="btn-teal-dark bg-teal-dark rounded-pill text-white form-control p-2 m--2"
 										name={"Login"}
 										type={"submit"}
 									/>

@@ -85,8 +85,8 @@ function TripCard({ trip }) {
 							<p>{formattedTime}</p>
 						</div>
 						<div className="drop-time">
-							<h6>Drop-off time:</h6>
-							<p>12:00pm</p>
+							<h6>Driver No:</h6>
+							<p>{trip?.driver?.phone_no}</p>
 						</div>
 					</div>
 				</div>

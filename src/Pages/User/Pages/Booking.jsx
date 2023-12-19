@@ -103,7 +103,7 @@ function Booking() {
 							},
 						},
 					}
-					console.log(booking)
+					// console.log(booking)
 					sessionStorage.setItem("book", JSON.stringify(bookingData))
 					toast.success("Booking successful!")
 

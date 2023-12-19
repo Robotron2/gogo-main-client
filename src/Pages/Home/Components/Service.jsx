@@ -1,16 +1,20 @@
 import { useState } from "react"
 import PropTypes from "prop-types"
 
-const Service = ({ title, content, className, id }) => {
+const Service = ({ title, content, className }) => {
 	const [expanded, setExpanded] = useState(false)
 
 	const toggleReadMore = () => {
 		setExpanded(!expanded)
 	}
 	return (
-		<div className={className} key={id}>
+		<div className={className}>
 			<h6>{title}</h6>
-			{expanded ? <span className="text-m">{content}</span> : <span className="text-m">{content.slice(0, 150)}</span>}
+			{expanded ? (
+				<span className="text-m">{content}</span>
+			) : (
+				<span className="text-m">{content.slice(0, 150)}</span>
+			)}
 			{content.length < 1000 && (
 				<small>
 					<i>
@@ -28,7 +32,7 @@ Service.propTypes = {
 	title: PropTypes.string,
 	className: PropTypes.string,
 	content: PropTypes.string,
-	id: PropTypes.number
+	id: PropTypes.number,
 }
 
 export default Service

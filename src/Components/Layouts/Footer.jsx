@@ -4,9 +4,7 @@ import toast from "react-hot-toast"
 
 const Footer = () => {
 	const toastUser = () => {
-		toast.error(
-			"User interactions that require user data will be online once we launch fully."
-		)
+		toast.error("Email subscription feature still in progress.")
 	}
 	return (
 		<>
